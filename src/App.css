@@ -23,11 +23,22 @@ h1, h2, h3, h4 {
 
 .form {
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+
 }
 
 textarea {
   font-size: calc(6px + 2vmin);
-  height: 50px;
+  width: 25%;
+  height: 35px;
+  padding: 5px 10px;
 }
 
 input[type=submit] {
@@ -45,22 +56,9 @@ input[type=submit] {
 }
 
 .App-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  max-width: 600px;
 }
 
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
