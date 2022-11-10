@@ -1,0 +1,66 @@
+body {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  font-size: calc(6px + 2vmin);
+}
+
+.title {
+  color: white;
+}
+
+h1, h2, h3, h4 {
+  color: #61dafb;
+}
+
+.math {
+  font-size: 2.2em !important;
+  }
+
+.form {
+  font-weight: bold;
+}
+
+textarea {
+  font-size: calc(6px + 2vmin);
+  height: 50px;
+}
+
+input[type=submit] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border-style: none;
+  box-sizing: border-box;
+  font-size: calc(6px + 2vmin);
+  background-color: #61dafb;
+}
+
+.App-header {
+  font-size: calc(10px + 2vmin);
+}
+
+.App-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
