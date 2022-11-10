@@ -25,7 +25,7 @@ function App() {
             <h4>Quadratic Formula</h4>
             <div className='math'>
               {
-                "\\(x=\\frac{-b\\sqrt{b^{2}+4ac}}{2a} \\)"
+                "\\(x=\\frac{-b\\pm{\\sqrt{b^{2}+4ac}}}{2a} \\)"
               }
             </div>
           </MathJax>
