@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/TrinomialFactoringPWA/static/css/main.5c3495c6.css",
-    "main.js": "/TrinomialFactoringPWA/static/js/main.cd1fa2da.js",
+    "main.js": "/TrinomialFactoringPWA/static/js/main.870df03a.js",
     "static/js/787.28cb0dcd.chunk.js": "/TrinomialFactoringPWA/static/js/787.28cb0dcd.chunk.js",
     "service-worker.js": "/TrinomialFactoringPWA/service-worker.js",
     "index.html": "/TrinomialFactoringPWA/index.html",
     "main.5c3495c6.css.map": "/TrinomialFactoringPWA/static/css/main.5c3495c6.css.map",
-    "main.cd1fa2da.js.map": "/TrinomialFactoringPWA/static/js/main.cd1fa2da.js.map",
+    "main.870df03a.js.map": "/TrinomialFactoringPWA/static/js/main.870df03a.js.map",
     "787.28cb0dcd.chunk.js.map": "/TrinomialFactoringPWA/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5c3495c6.css",
-    "static/js/main.cd1fa2da.js"
+    "static/js/main.870df03a.js"
   ]
 }
