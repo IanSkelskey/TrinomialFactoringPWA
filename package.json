@@ -1,7 +1,8 @@
 {
-  "name": "trinomial-factoring-pwa",
+  "name": "factor-a-trinomial",
+  "description": "A tutoring aid that factors quadratic trinomials by the AC method and shows every step.",
   "homepage": "https://ianskelskey.github.io/TrinomialFactoringPWA",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "dependencies": {

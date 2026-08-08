@@ -1,44 +1,28 @@
-# Trinomial Factoring PWA
+# Factor a Trinomial
 
-A web app that factors quadratic trinomials by the AC method and shows every step.
+https://ianskelskey.github.io/TrinomialFactoringPWA
 
-**Live:** https://ianskelskey.github.io/TrinomialFactoringPWA
+I tutor math, and factoring trinomials is where a lot of students get stuck. The
+answer is rarely the problem — plenty of solvers will hand you `(x + 2)(x + 3)`.
+What students actually need is the middle: why you multiply `a` and `c`, where
+the two numbers come from, and how the four terms group back together.
 
-## Running locally
+So I built the thing I kept drawing on paper.
 
-```bash
-npm install
-npm run dev
-```
+You type in `a`, `b` and `c`, and it works through the AC method one step at a
+time:
 
-| Script | What it does |
-| --- | --- |
-| `npm run dev` | Vite dev server with hot reload |
-| `npm run build` | Typechecks, then builds to `dist/` |
-| `npm run preview` | Serves the production build locally |
-| `npm test` | Vitest in watch mode (`npm test -- --run` for one pass) |
-| `npm run typecheck` | `tsc --noEmit` |
+1. Multiply `a` and `c`
+2. Find the pair of numbers that multiply to `ac` and add to `b`
+3. Split the middle term into those two pieces
+4. Group the four terms in pairs
+5. Factor each pair, then pull out the bracket they share
 
-## How it works
+Every step is written out and explained, not just the answer.
 
-`src/factoring.ts` holds the algebra and imports nothing from React, so it is
-tested independently of the UI. For `ax² + bx + c` it finds `m` and `n` with
-`m + n = b` and `mn = ac` — the roots of `t² − bt + ac` — then splits the middle
-term and factors by grouping. The trinomial factors over the integers exactly
-when `b² − 4ac` is a perfect square and `b ± √(b² − 4ac)` is even.
+It handles the cases that trip students up — negative coefficients, a common
+factor to pull out first, perfect squares. And when a trinomial doesn't factor
+over the integers, it says so and shows the discriminant, instead of silently
+failing or making something up.
 
-`src/App.tsx` renders the returned steps. Equations are typeset by MathJax 4
-through `better-react-mathjax`.
-
-## Deployment
-
-Pushing to `main` triggers [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml),
-which typechecks, runs the tests, builds, and publishes `dist/` to GitHub Pages.
-A type error or a failing test stops the deploy.
-
-The repository's **Settings → Pages → Source** must be set to **GitHub Actions**
-(not "Deploy from a branch"). There is no `gh-pages` branch and no manual
-`npm run deploy` step.
-
-`base` in `vite.config.ts` is set to `/TrinomialFactoringPWA/` because this is a
-project site rather than a user site. It must match the repository name.
+Works on a phone, and installs to the home screen if you want it there.

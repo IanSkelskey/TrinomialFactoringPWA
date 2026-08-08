@@ -1,3 +1,5 @@
+# Requires Settings -> Pages -> Source to be set to "GitHub Actions".
+# With "Deploy from a branch" the build succeeds but the deploy step fails.
 name: Deploy to GitHub Pages
 
 on:
