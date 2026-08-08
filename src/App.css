@@ -1,64 +1,344 @@
-body {
-  background-color: #282c34;
+/* Mobile-first. Breakpoints widen the measure and step the type up;
+   nothing below relies on a min-width query to be usable. */
+
+.app {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 1.75rem;
+  min-height: 100dvh;
+  padding: 1.5rem 1rem 2rem;
+}
+
+@media (min-width: 40em) {
+  .app {
+    gap: 2.5rem;
+    padding: 3rem 1.5rem 3.5rem;
+  }
+}
+
+/* --- header ---------------------------------------------------- */
+
+.app__header {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 0.6rem;
   text-align: center;
-  color: white;
-  font-size: calc(6px + 2vmin);
 }
 
-.title {
-  color: white;
+.mark {
+  width: 3.25rem;
+  height: 3.25rem;
 }
 
-h1, h2, h3, h4 {
-  color: #61dafb;
+.mark__axis {
+  stroke: var(--ink-muted);
+  stroke-width: 2.5;
+  stroke-linecap: round;
 }
 
-.math {
-  font-size: 2.2em !important;
+.mark__curve {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+/* Ringed in the page colour, otherwise the roots disappear into the
+   curve they sit on. */
+.mark__root {
+  fill: var(--accent);
+  stroke: var(--paper);
+  stroke-width: 2.5;
+}
+
+.app__title {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.app__tagline {
+  max-width: 28rem;
+  color: var(--ink-muted);
+  text-wrap: balance;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--ink-muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.badge::before {
+  content: '';
+  flex: none;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* --- layout ---------------------------------------------------- */
+
+.app__main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
+@media (min-width: 40em) {
+  .app__main {
+    gap: 1.75rem;
+  }
+}
+
+.card {
+  padding: 1.25rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+}
+
+@media (min-width: 40em) {
+  .card {
+    padding: 1.75rem 1.5rem;
+  }
+}
+
+.card__heading {
+  margin-bottom: 0.9rem;
+  color: var(--ink-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* --- equation -------------------------------------------------- */
+
+/* MathJax output does not wrap, so the equation scrolls inside its
+   own box rather than pushing the page sideways. */
+.equation {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1.1rem 0.75rem;
+  border-radius: var(--radius-md);
+  background: var(--surface-sunken);
+  font-size: var(--step-2);
+  text-align: center;
+  scrollbar-width: thin;
+}
+
+.equation--lead {
+  margin-bottom: 1.5rem;
+}
+
+/* --- coefficient inputs ---------------------------------------- */
+
+.coefficients {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+
+@media (min-width: 40em) {
+  .coefficients {
+    gap: 0.9rem;
+  }
+}
+
+.coefficient {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+/* Lowercase italic to match how the coefficient is written in the
+   equation above; uppercase A/B/C reads as different variables. */
+.coefficient__label {
+  color: var(--ink-muted);
+  font-family: var(--font-math);
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.coefficient__input {
+  width: 100%;
+  min-width: 0;
+  padding: 0.7rem 0.6rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: var(--step-1);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.coefficient__input::placeholder {
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+.coefficient__input:hover {
+  border-color: var(--accent);
+}
+
+.coefficient__input:focus-visible {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* Spinners fight the centred, tabular look. */
+.coefficient__input::-webkit-outer-spin-button,
+.coefficient__input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.coefficient__input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* --- actions --------------------------------------------------- */
+
+.actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+}
+
+.button {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: var(--step-0);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 120ms ease, transform 80ms ease;
+}
+
+.button:hover {
+  background: var(--accent-hover);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button--ghost {
+  flex: 0 0 auto;
+  border-color: var(--border-strong);
+  background: transparent;
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+
+.button--ghost:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+/* --- steps ----------------------------------------------------- */
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps__item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  overflow-x: auto;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-sunken);
+  counter-increment: step;
+}
+
+.steps__item::before {
+  content: counter(step);
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- reference ------------------------------------------------- */
+
+.reference {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+@media (min-width: 40em) {
+  .reference {
+    flex-direction: row;
   }
 
-.form {
-  font-weight: bold;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  .reference > * {
+    flex: 1;
+    min-width: 0;
+  }
 }
 
-.row {
-  display: flex;
-  flex-direction: row;
-
+.reference__title {
+  margin-bottom: 0.5rem;
+  color: var(--ink-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
-textarea {
-  font-size: calc(6px + 2vmin);
-  width: 25%;
-  height: 35px;
-  padding: 5px 10px;
-}
+/* --- footer ---------------------------------------------------- */
 
-input[type=submit] {
-  width: 50%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  border-style: none;
-  box-sizing: border-box;
-  font-size: calc(6px + 2vmin);
-  background-color: #61dafb;
-}
-
-.App-header {
-  font-size: calc(10px + 2vmin);
-}
-
-.App-content {
-  max-width: 600px;
-}
-
-.App-link {
-  color: #61dafb;
+.app__footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  color: var(--ink-faint);
+  font-size: 0.8rem;
+  text-align: center;
 }

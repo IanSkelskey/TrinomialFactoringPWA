@@ -1,13 +1,145 @@
+/* ---------------------------------------------------------------
+   Design tokens. Light ("paper") is the base; dark ("chalkboard")
+   overrides only the colours. Every token is defined here on bare
+   :root so nothing depends on a media query having matched.
+   --------------------------------------------------------------- */
+
+:root {
+  --paper: #fbfaf7;
+  --surface: #ffffff;
+  --surface-sunken: #f4f1ea;
+  --border: #e3ddd1;
+  --border-strong: #cec5b4;
+
+  --ink: #1c1917;
+  --ink-muted: #6f675e;
+  --ink-faint: #97918a;
+
+  --accent: #b45309;
+  --accent-hover: #92400e;
+  --accent-soft: #fef3e2;
+  --accent-ink: #ffffff;
+
+  --shadow-sm: 0 1px 2px rgb(28 25 23 / 0.06);
+  --shadow-md: 0 2px 4px rgb(28 25 23 / 0.06), 0 8px 20px rgb(28 25 23 / 0.07);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+
+  --step-0: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+  --step-1: clamp(1.1rem, 1rem + 0.5vw, 1.3rem);
+  --step-2: clamp(1.35rem, 1.15rem + 1vw, 1.75rem);
+  --step-3: clamp(1.7rem, 1.35rem + 1.75vw, 2.6rem);
+
+  --measure: 34rem;
+
+  --font-ui: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+
+  /* Echoes the Century Schoolbook that MathJax renders the maths in.
+     System faces only, so there is no webfont to download. */
+  --font-display: ui-serif, 'Century Schoolbook', 'New Century Schoolbook',
+    'TeX Gyre Schola', Georgia, 'Times New Roman', serif;
+  --font-math: var(--font-display);
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --paper: #0f1729;
+    --surface: #16203a;
+    --surface-sunken: #111a2e;
+    --border: #253352;
+    --border-strong: #35466b;
+
+    --ink: #e8eaf0;
+    --ink-muted: #9aa6bf;
+    --ink-faint: #6f7d99;
+
+    --accent: #fbbf24;
+    --accent-hover: #fcd34d;
+    --accent-soft: #1e2a45;
+    --accent-ink: #0f1729;
+
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3);
+    --shadow-md: 0 2px 4px rgb(0 0 0 / 0.25), 0 8px 20px rgb(0 0 0 / 0.35);
+  }
+}
+
+:root[data-theme='dark'] {
+  --paper: #0f1729;
+  --surface: #16203a;
+  --surface-sunken: #111a2e;
+  --border: #253352;
+  --border-strong: #35466b;
+
+  --ink: #e8eaf0;
+  --ink-muted: #9aa6bf;
+  --ink-faint: #6f7d99;
+
+  --accent: #fbbf24;
+  --accent-hover: #fcd34d;
+  --accent-soft: #1e2a45;
+  --accent-ink: #0f1729;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-md: 0 2px 4px rgb(0 0 0 / 0.25), 0 8px 20px rgb(0 0 0 / 0.35);
+}
+
+/* --------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  min-height: 100dvh;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--step-0);
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+:where(a) {
+  color: var(--accent);
+}
+
+:where(button, input, textarea, select) {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

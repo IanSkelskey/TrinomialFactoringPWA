@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Parabola crossing the x-axis at two roots">
+  <rect width="64" height="64" rx="14" fill="#0f1729"/>
+  <line x1="6" y1="26" x2="58" y2="26" stroke="#e8eaf0" stroke-width="2.5" stroke-linecap="round" opacity="0.45"/>
+  <path d="M10 8 Q32 80 54 8" fill="none" stroke="#fbbf24" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="16.44" cy="26" r="4.5" fill="#fbbf24" stroke="#0f1729" stroke-width="2.5"/>
+  <circle cx="47.56" cy="26" r="4.5" fill="#fbbf24" stroke="#0f1729" stroke-width="2.5"/>
+</svg>
