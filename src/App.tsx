@@ -1,6 +1,5 @@
-
 import { MathJax, MathJaxContext } from 'better-react-mathjax';
-import React, { useState } from 'react';
+import { useState, type ChangeEvent } from 'react';
 import './App.css';
 
 function App() {
@@ -36,20 +35,21 @@ function App() {
   );
 }
 
+type Coefficients = {
+  a: string;
+  b: string;
+  c: string;
+};
+
 function Field() {
-  const [coefficients, setCoefficients] = useState(["a", "b", "c"]);
+  const [coefficients, setCoefficients] = useState<Coefficients>({ a: "a", b: "b", c: "c" });
 
-  const setA = event => {
-    setCoefficients([event.target.value, coefficients[1], coefficients[2]]);
-  }
-  const setB = event => {
-    setCoefficients([coefficients[0], event.target.value, coefficients[2]]);
-  }
-  const setC = event => {
-    setCoefficients([coefficients[0], coefficients[1], event.target.value]);
+  const setCoefficient = (key: keyof Coefficients) => (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const { value } = event.target;
+    setCoefficients(previous => ({ ...previous, [key]: value }));
   }
 
-  let equation = "\\(" + coefficients[0] + "x^{2}+" + coefficients[1] + "x+" + coefficients[2] + "\\)"
+  let equation = "\\(" + coefficients.a + "x^{2}+" + coefficients.b + "x+" + coefficients.c + "\\)"
 
   return (
     <div>
@@ -67,15 +67,15 @@ function Field() {
           <div className='row'>
             <label>
               {"a: "}
-              <textarea value={coefficients[0]} onChange={setA} />
+              <textarea value={coefficients.a} onChange={setCoefficient("a")} />
             </label>
             <label>
               {"b: "}
-              <textarea value={coefficients[1]} onChange={setB} />
+              <textarea value={coefficients.b} onChange={setCoefficient("b")} />
             </label>
             <label>
               {"c: "}
-              <textarea value={coefficients[2]} onChange={setC} />
+              <textarea value={coefficients.c} onChange={setCoefficient("c")} />
             </label>
           </div>
 
