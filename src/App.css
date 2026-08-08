@@ -251,6 +251,21 @@
   transform: translateY(1px);
 }
 
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.button:disabled:hover {
+  background: var(--accent);
+}
+
+.button--ghost:disabled:hover {
+  border-color: var(--border-strong);
+  background: transparent;
+  color: var(--ink-muted);
+}
+
 .button--ghost {
   flex: 0 0 auto;
   border-color: var(--border-strong);
@@ -279,10 +294,9 @@
 
 .steps__item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.85rem;
-  overflow-x: auto;
-  padding: 0.75rem 0.85rem;
+  padding: 0.85rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   background: var(--surface-sunken);
@@ -296,12 +310,91 @@
   place-items: center;
   width: 1.65rem;
   height: 1.65rem;
+  margin-top: 0.1rem;
   border-radius: 50%;
   background: var(--accent);
   color: var(--accent-ink);
   font-size: 0.8rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
+}
+
+.steps__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.steps__title {
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.steps__detail {
+  margin-top: 0.15rem;
+  color: var(--ink-muted);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.steps__math {
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-top: 0.5rem;
+  font-size: var(--step-1);
+  scrollbar-width: thin;
+}
+
+/* --- answer ---------------------------------------------------- */
+
+.answer {
+  margin-top: 1.1rem;
+  padding: 1rem 0.85rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-md);
+  background: var(--accent-soft);
+  text-align: center;
+}
+
+.answer__label {
+  color: var(--ink-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.answer__math {
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-top: 0.4rem;
+  font-size: var(--step-2);
+  scrollbar-width: thin;
+}
+
+/* --- working states -------------------------------------------- */
+
+.working__empty {
+  color: var(--ink-muted);
+  line-height: 1.55;
+}
+
+.working__empty em {
+  font-family: var(--font-math);
+  font-style: italic;
+}
+
+.working__notice {
+  margin-top: 1rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface-sunken);
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
+.working__notice:first-of-type {
+  margin-top: 0;
 }
 
 /* --- reference ------------------------------------------------- */
